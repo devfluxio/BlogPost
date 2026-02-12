@@ -2,11 +2,17 @@ const express = require("express");
 const userRouter = require("./routes/user-routes");
 const blogRouter = require("./routes/blog-routes");
 require("./config/db");
-const cors = require("cors");
-const path = require('path')
+const path = require('path');
+app.use(cors({
+  origin: "https://blogpost-in.onrender.com",
+  credentials: true
+}));
+
 const app = express();
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(cors());
+
+const PORT = process.env.PORT ||5000;
 
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -20,4 +26,4 @@ app.use("/api", (req, res, next) => {
 
 //define port
 
-app.listen(5001, () => console.log("app started at 5001..."));
+app.listen(PORT, () => console.log(`app started at ${PORT}`));
