@@ -3,7 +3,7 @@ const userRouter = require("./routes/user-routes");
 const blogRouter = require("./routes/blog-routes");
 require("./config/db");
 const path = require('path');
-const cors = require(cors());
+const cors = require("cors");
 const app = express();
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(cors({
